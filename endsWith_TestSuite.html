@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Unit Tests for endsWith String functions</title>
+    <script src="extended_string.js"></script>
+    <script>
+    function testEndsWith(str, prefix, expected) {
+        results.total++;
+        var stringToTest = String(str);
+        var prefixStr = String(prefix);
+        var result = stringToTest.endsWith(prefixStr);
+        if (result !== expected) {
+            results.failed++;
+            console.log("For test string: " + stringToTest + " and prefix: " + 
+                        prefixStr + " expected " + expected + ", but was " + result);
+        }
+    }
+    var results = {
+        total: 0,
+        failed: 0
+    };
+    var testString = 'Hello World';
+    testEndsWith(testString, "orld", true);
+    testEndsWith(testString, "Hello World", true);
+    testEndsWith(testString, "Goodbye", false);
+    testEndsWith(testString, "Hello World!!!!", false);
+    testEndsWith(testString, "", true);
+    testEndsWith(testString, null, false);
+    testEndsWith(testString, 42, false);
+    testEndsWith(testString, undefined, false);
+    testEndsWith('', '', true);
+    testEndsWith('', 'Hello', false);
+    testEndsWith(null, 'Hello', false);
+    console.log("Of " + results.total + " String.endsWith() tests, " + results.failed + " failed, "
+        + (results.total - results.failed) + " passed.");
+    </script>
+</head>
+<body>
+
+</body>
+</html>

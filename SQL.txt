@@ -1,0 +1,49 @@
+Requirement 7
+
+First answer:
+select 	distinct sp.name as Salesperson_Name
+from	Orders od,
+		Customer cust,
+		Salesperson sp
+where	od.customerID = cust.customerID
+and		od.salespersonID = sp.salespersonID
+and		cust.name = 'George'
+order by sp.name;
+
+
+Second answer:
+select	*
+from	salesperson s
+where	s.salespersonID not in (
+	select 	od.salespersonID
+    from	Orders od,
+			Customer cust
+	where	od.customerID = cust.customerID
+    and		cust.name = 'George'
+);
+
+
+Third answer:
+select 	sp.name
+from	Salesperson sp,
+		(
+			select	od.salespersonID as sp_id
+			from	Orders od
+			group by od.salespersonID
+			having count(*) >= 2
+        ) as SP_IDs
+where	sp.salespersonID = SP_IDs.sp_id;
+
+
+
+Requirement 8
+
+First answer:
+
+
+
+Second answer:
+
+
+
+Third answer:

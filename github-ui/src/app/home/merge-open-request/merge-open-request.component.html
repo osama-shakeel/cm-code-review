@@ -1,0 +1,59 @@
+<div class=row>
+    <div class=col>
+      <div class="row pt-2">
+        <div class=col>
+            <button class="btn btn-primary" type="submit" (click)="displayMergeRequestForm()">Merge Request</button>
+        </div>
+      </div>
+
+      <div *ngIf="displayForm == true">
+        <form name="mergeRequestForm" class="form-group" [formGroup]="mergeRequestForm" (ngSubmit)="submitMergeForm()">
+            <fieldset>
+                <div class="row">
+                    <div class="col-3">
+                        <div class=form-field>
+                            <input type="text" id="number" name="number" formControlName="num" placeholder="Number" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-3">
+                        <div class=form-field>
+                            <input type="text" id="commit_title" name="commit_title" formControlName="commit_title" placeholder="Commit Title" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-3">
+                        <div class=form-field>
+                            <input type="text" id="commit_message" name="commit_message" formControlName="commit_message" placeholder="Commit Message" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-3">
+                        <div class=form-field>
+                            <input type="text" id="sha" name="sha" formControlName="sha" placeholder="Merge SHA" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <div class=form-field>
+                          <button class="btn btn-primary" type="submit" (click)="submitMergeForm()"
+                          [disabled]="!mergeRequestForm.valid">
+                            Merge
+                          </button>
+                          &nbsp;&nbsp;
+                          {{successMessage}}
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+      </div>
+    </div>
+</div>
